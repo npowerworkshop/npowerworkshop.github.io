@@ -1,0 +1,20 @@
+{
+	"name": "排版力",
+	"price": "300 元",
+	"duration": "3.5 hr",
+	"date": "2015-12-19",
+	"attandence": "18 / 20",
+	"speaker": {
+		"img": "../images/history/speakers/20151219.jpg",
+		"name": "林協霆",
+		"department": "成功大學醫學系",
+	},
+	"info": "想了解印刷，但卻負擔高額的軟體課程？<br>三小時的出版工作坊，從排版觀念、軟體操作、印刷知識，針對想親手完成一本刊物的學員設計。<br>小班教學，以確保每位學員在實際操作單元有最好的教學品質。",
+	"img": "../images/history/photos/20151219.jpg",
+	"feedback": [
+		{
+			"name": "",
+			"content": ""
+		}
+	]
+}

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N次坊</title>
+    <link href="favicon.ico" rel="SHORTCUT ICON">
+
+    <!-- jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/jquery.parallax-1.1.3.js" charset="utf-8"></script>
+
+    <!-- Semantic UI -->
+    <link rel="stylesheet" href="semantic/semantic.min.css">
+    <script src="semantic/semantic.min.js" charset="utf-8"></script>
+
+    <!-- D3.js -->
+    <script src="js/d3.v3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.20/topojson.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <!-- CountUp.js -->
+    <script src="js/countUp.min.js" charset="utf-8"></script>
+    <script src="js/progressbar.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+		<div id="top-bar">
+			<a href="https://www.facebook.com/npower.workshop/" target="_blank"><i class="huge facebook icon"></i><br>粉絲專頁</a><br><br>
+			<a href="pay.html" target="_blank"><i class="huge calculator icon"></i><br>講者費用<br>小工具</a><br><br>
+		</div>
+		<style>
+			#top-bar{
+				width:7%;
+				position:fixed;
+				text-align:center;
+				border-radius: 20px;
+				padding: 10px;
+				top: 10%;
+			}
+		</style>
+    <div class="container bg" style="background-image: url('images/about.png'); background-repeat: no-repeat;">
+      <br>
+      <div class="page">
+        <img id="logo"/>
+				<img id="logo_frame" src="images/logo_frame.png"/>
+      </div>
+			<br><br>
+      <div class="hidden-content" style="height: 100vh;">
+        <div class="row title">
+          <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+          </div>
+          <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 paragraph-title">
+            關於Ｎ次坊
+          </div>
+          <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+          </div>
+        </div>
+				<h1>「關於自學？」</h1>
+				<p style="font-size: 18px;">
+				現行教育體制下，我們已不知不覺地被成績與競爭的框架受限；而在這資訊時代，學校也漸漸無法給予我們發展所需的所有資源，過往「努力讀書」就會成功的單一公式已不完全有效。因此，Ｎ次坊透過實體雙向互動的工作坊，將「自學」延伸：並非由自己從頭學起，而是一種「熱情」的點燃，真正刺激學習。
+				</p>
+				<h1>「為什麼是工作坊？」</h1>
+				<p style="font-size: 18px;">
+				相較於常見的單向傳輸「演講分享」，講者將透過Ｎ次坊的工作坊設計，將技能系統化，透過分享深化自身技能、將熱情傳遞給更多人體驗；對於學員，透過實體工作坊，學習到新技能、嘗試新選項，並找到夥伴與熱情，以及未來的可能性。
+				</p>
+				<h1>「為什麼是學生講者？」</h1>
+				<p style="font-size: 18px;">
+				Ｎ次坊定位在從 0 到 1 的「入門工作坊」。若由具備多年經驗的專家來分享，他們當初的「學習環境」，與現在的方法與資源已大不相同。因此，交由現今時空背景下，「自學」而成的學生來當任分享者，將更能瞭解「現在該如何入門」，進一步分享自學時遇到的瓶頸、需要的資源。
+				這個Ｎ，由你自己來定義，透過多方學習的過程，不斷疊加，並且養成分享的態度，真正的達到學習Ｎ次方。
+				</p>
+      </div>
+      <div id="aboutUsChart" class="hidden-content jumbotron" style="background-color: transparent;">
+        <h1 style="text-align: center;">創辦於 2016 年 3 月</h1>
+        <h3 style="text-align: center;">預計一年內辦 25 場工作坊，擁有 360 位學員</h3>
+        <br>
+        <div class="row" style="text-align: center;">
+          <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+            <h2>經過了</h2><br>
+            <div class="pie" id="dayspie"></div>
+          </div>
+          <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+            <h2>總共舉辦</h2><br>
+            <div class="pie" id="workshopspie"></div>
+          </div>
+          <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+            <h2>擁有</h2><br>
+            <div class="pie" id="studentspie"></div>
+          </div>
+        </div>
+      </div>
+      <div class="hidden-content" style="height: 110vh;">
+        <div class="row title">
+          <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+          </div>
+          <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 paragraph-title">
+            過往工作坊
+          </div>
+          <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+          </div>
+        </div>
+        <br>
+        <!--<iframe src='https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1OymIlb4BOnxdK7tuEqP4jnvhwCNWLRCtc_8za_ftbak&font=Default&lang=en&initial_zoom=2&height=650' width='100%' height='650' frameborder='0'></iframe>-->
+				<div class="row">
+					<div class="col-md-2 col-xs-2 col-sm-2 col-lg-2">
+						<div id="history_menu" class="ui middle aligned selection animated list">
+							<div class="item" onclick="history('20151219');">
+								<div class="content"><p>排版力</p></div>
+							</div>
+							<div class="item active" onclick="history('20151220');">
+								<div class="content"><p>簡報力</p></div>
+							</div>
+							<div class="item" onclick="history('20160306');">
+								<div class="content"><p>Ai 力</p></div>
+							</div>
+							<div class="item" onclick="history('20160312');">
+								<div class="content"><p>簡報力</p></div>
+							</div>
+							<div class="item" onclick="history('20160320');">
+								<div class="content"><p>PS 力</p></div>
+							</div>
+							<div class="item" onclick="history('20160328');">
+								<div class="content"><p>影像力</p></div>
+							</div>
+							<div class="item" onclick="history('20160410');">
+								<div class="content"><p>自助旅行力</p></div>
+							</div>
+							<div class="item" onclick="history('20160424');">
+								<div class="content"><p>英語發音力</p></div>
+							</div>
+							<div class="item" onclick="history('20160430');">
+								<div class="content"><p>三創力</p></div>
+							</div>
+							<div class="item" onclick="history('20160515');">
+								<div class="content"><p>魅力</p></div>
+							</div>
+							<div class="item" onclick="history('20160528');">
+								<div class="content"><p>簡報力馬拉松</p></div>
+							</div>
+							<div class="item" onclick="history('20160529');">
+								<div class="content"><p>PS 力</p></div>
+							</div>
+							<div class="item" onclick="history('20160612');">
+								<div class="content"><p>海報力</p></div>
+							</div>
+							<div class="item" onclick="history('20160807');">
+								<div class="content"><p>文案力</p></div>
+							</div>
+							<div class="item" onclick="history('20160819');">
+								<div class="content"><p>小編力</p></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-8 col-xs-8 col-sm-8 col-lg-8">
+						<div class="row">
+							<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+								<h1 id="workshop_title"></h1>
+							</div>
+							<div class="col-md-8 col-xs-8 col-sm-8 col-lg-8">
+								<div id="workshop_data" class="row">
+									<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4" id="price">
+									</div>
+									<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4" id="date">
+									</div>
+									<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4" id="attandence">
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md-3 col-xs-3 col-sm-3 col-lg-3">
+								<img id="speakerimg" class="ui small circular image" src="">
+							</div>
+							<div class="col-md-9 col-xs-9 col-sm-9 col-lg-9">
+								<span id="speaker_name"></span>　　　<span id="department"></span>
+								<br><br>
+								<p id="workshopinfo"></p>
+							</div>
+						</div>
+						<br><br>
+						<div class="row">
+							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5">
+								<img id="workshopimg" class="ui image" src="">
+							</div>
+							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7">
+								<h1 id="feedback_title" style="text-align: center;"></h1>
+								<div class="row">
+									<div class="col-md-1 col-xs-1 col-sm-1 col-lg-1">
+										<br><br>
+										<i class="big chevron circle left icon" onclick="shift_left();"></i>
+									</div>
+									<div class="col-md-10 col-xs-10 col-sm-10 col-lg-10">
+										<h2 id="feedback_name"></h2>
+										<p id="feedback"></p>
+									</div>
+									<div class="col-md-1 col-xs-1 col-sm-1 col-lg-1">
+										<br><br>
+										<i class="big chevron circle right icon" onclick="shift_right();"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2 col-xs-2 col-sm-2 col-lg-2">
+						<div id="history_menu" class="ui middle aligned selection animated list">
+							<div class="item" onclick="history('20160828');">
+								<div class="content"><p>懶人包簡報動畫力</p></div>
+							</div>
+							<div class="item" onclick="history('20160924');">
+								<div class="content"><p>探索力</p></div>
+							</div>
+							<div class="item" onclick="history('20160925');">
+								<div class="content"><p>UX 力</p></div>
+							</div>
+							<div class="item" onclick="history('20161016');">
+								<div class="content"><p>PS 力</p></div>
+							</div>
+							<div class="item" onclick="history('20161030');">
+								<div class="content"><p>自我探索力</p></div>
+							</div>
+							<div class="item" onclick="history('20161106');">
+								<div class="content"><p>經費力</p></div>
+							</div>
+						</div>
+					</div>
+				</div>
+      </div>
+      <br>
+      <div class="hidden-content" style="height: 150vh;">
+        <div class="row title">
+          <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+          </div>
+          <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 paragraph-title">
+            關鍵數據
+          </div>
+          <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+          </div>
+        </div>
+
+        <div id="studentMap">
+          <div class="row">
+            <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+              <br><br>
+              <h1 style="font-size: 48px;">學員地區分布</h1>
+              <svg width="800px" height="600px" viewBox="0 0 800 600" id="student"></svg>
+            </div>
+            <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3">
+              <br><br><br><br><br><br><br><br>
+              <p style="font-size:18px; text-align:right;">
+              臺北市<br>
+              嘉義市<br>
+              新竹市<br>
+              基隆市<br>
+              新北市<br>
+              桃園市<br>
+              臺中市<br>
+              彰化縣<br>
+              高雄市<br>
+              臺南市<br>
+              金門縣<br>
+              澎湖縣<br>
+              雲林縣<br>
+              連江縣<br>
+              新竹縣<br>
+              苗栗縣<br>
+              屏東縣<br>
+              嘉義縣<br>
+              宜蘭縣<br>
+              南投縣<br>
+              花蓮縣<br>
+              臺東縣<br>
+              </p>
+            </div>
+            <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3">
+              <br><br><br><br><br><br><br><br>
+              <svg id="studentchart" style="margin-top: 5px;"></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+			<!--
+      <div class="hidden-content" style="height: 100vh;">
+        <div class="row title">
+          <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+          </div>
+          <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 paragraph-title">
+            成員們
+          </div>
+          <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+          </div>
+        </div>
+				
+      </div>
+			-->
+    </div>
+  </body>
+  <script type="text/javascript">
+
+  </script>
+  <!-- Include JS CSS -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/index.css">
+  <script src="js/index.js" charset="utf-8"></script>
+
+  <style media="screen">
+    @charset 'UTF-8';
+    @font-face
+    {
+      font-family: 'My Fonts';
+      src: url('fonts/NotoSansCJKtc-Regular.otf');
+    }
+    body {
+      font-family: 'My Fonts';
+    }
+		#workshop_title {
+			font-size: 46px;
+		}
+		#workshop_data {
+			line-height: 52px;
+			font-size: 16px;
+		}
+		#department, #speaker_name {
+			line-height: 24px;
+		}
+		#speaker_name {
+			font-size: 24px;
+		}
+		#department {
+			font-size: 18px;
+		}
+		#workshopinfo {
+			font-size: 16px;
+		}
+		#speakerimg {
+			float: right;
+		}
+		#history_menu {
+			background-color: rgba(120, 176, 180, 0.2);
+			border-radius: 5px;
+			height: 100hv;
+		}
+		.item .active {
+			background-color: rgba(120, 176, 180, 0.6);
+		}
+  </style>
+</html>

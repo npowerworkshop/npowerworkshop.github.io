@@ -1,0 +1,52 @@
+.num {
+  line-height: 1em;
+  font-size: 3em;
+}
+.pie {
+  position: relative;
+}
+
+#logo {
+	width: 400px;
+	height: 400px;
+	top: 50%;
+	left: 50%;
+	margin: -200px 0 0 -200px;
+	position: absolute;
+}
+
+#logo_frame {
+	width: 450px;
+	height: 450px;
+	top: 50%;
+	left: 50%;
+	margin: -225px 0 0 -225px;
+	position: absolute;
+	opacity: 0;
+}
+
+#aboutUsChart {
+  position: relative;
+  top: 10%;
+  height: 120vh;
+}
+
+.page {
+  height: 100vh;
+}
+
+.hidden-content {
+    opacity: 0;
+}
+
+.paragraph-title {
+  position: relative;
+  width: 350px;
+  height: 98px;
+  background-image: url('../images/tagbg.png');
+  background-size: cover;
+  color: #FBFCED;
+  text-align: center;
+  line-height: 98px;
+  font-size: 36pt;
+}

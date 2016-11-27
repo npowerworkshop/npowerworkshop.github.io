@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>N次坊講師費用計算機</title>
+		<link href="favicon.ico" rel="SHORTCUT ICON">
+
+		<!-- jQuery -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+		<!-- Semantic UI -->
+		<link rel="stylesheet" href="semantic/semantic.min.css">
+		<script src="semantic/semantic.min.js" charset="utf-8"></script>
+	</head>
+	<body style="background-color: #fcfcf2;">
+		<h1 style="margin-top: 50px; font-size: 48px; text-align:center;">N次坊講師費用計算機</h1>
+		<div class="ui middle aligned center aligned grid">
+				<div class="ui grid column" style="width:80%;">
+				<div class="four column row">
+						<div class="column">
+								<div class="ui input">
+										<input type="text" placeholder="報名人數" id="people" onchange="calculate();">
+								</div>
+						</div>
+						<div class="column">
+								<div class="ui input">
+										<input type="text" placeholder="課程費用" id="bill" onchange="calculate();">
+								</div>
+						</div>
+						<div class="column">
+								<div class="ui input">
+										<input type="text" placeholder="過往工作坊場次" id="num" onchange="calculate();">
+										<p></p>
+								</div>
+						</div>
+						<div class="column">
+								<p id="result" style="font-size:24px;">＝　　0 NTD</p>
+						</div>
+				</div>
+				</div>
+		</div>
+		<div class="ui segment" style="margin-left: 200px; margin-right: 200px;">
+				<h1 style="font-size: 24px; text-align:left;">費用如何計算？</h1>
+				<p style="margin-left: 50px; font-size: 24px; text-align:left;">講者收入＝</p>
+				<div class="ui grid">
+						<div class="ui eleven wide column">
+								<p style="margin-left: 50px; font-size: 24px; text-align:left;">
+										1200</p>
+								<p style="margin-left: 50px; font-size: 24px; text-align:left;">
+										+ (總收入扣除手續費) * (50 + 5 * n) % * (人數-6 / 人數)</p>
+								<p style="margin-left: 50px; font-size: 18px; text-align:left;">
+										P.S. n 為過往辦過工作坊的總數</p>
+						</div>
+						<div class="ui five wide column">
+								<p style="margin-right: 50px; font-size: 24px; text-align:right;">學員 < 6人</p>
+								<p style="margin-right: 50px; font-size: 24px; text-align:right;">學員 > 6人</p>
+						</div>
+				</div>
+		</div>
+		<h1 style="margin-left: 200px; font-size: 24px; text-align:left;">參考圖例：</h1>
+		<img src="images/pay.jpg" alt="" style="display:block; margin:auto;"/>
+		<script type="text/javascript">
+				function calculate() {
+						var p = parseInt($('#people').val());
+						var b = parseInt($('#bill').val());
+						var n = parseInt($('#num').val());
+						var result = 0;
+						if(p < 6) {
+								result = 1200;
+						} else {
+								result = (p*b - (p*b*0.05+10*p+15)) * (p-6)/p * (0.5+0.05*(n)) + 1200;
+								result = parseInt(result);
+								// result = 1200 - (b*0.05+10)*p + (p-6)*b*(0.5+0.05*(n-1));
+								// 1200 - (p*0.05+10)*b + (p-6)*b*(0.5+0.05*(n-1))
+								// (p*b - (p*b*0.05+10*p+15)) * (p-6)/p * (0.5+0.05*(n-1)) + 1200
+						}
+						$('#result').html("＝　　" + result.toString() + " NTD");
+				}
+		</script>
+		<style media="screen">
+			@charset 'UTF-8';
+			@font-face
+			{
+				font-family: 'My Fonts';
+				src: url('fonts/NotoSansCJKtc-Regular.otf');
+			}
+			body {
+				font-family: 'My Fonts';
+			}
+			h1 {
+				font-family: 'My Fonts';
+			}
+		</style>
+	</body>
+</html>
